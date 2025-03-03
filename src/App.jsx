@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// App.jsx
+import React from "react";
+import Header from "./components/Header";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="app">
+      <Header />
+      <main className="main-content">
+        <section className="hero">
+          <div className="hero-content">
+            <h1>¡Bienvenidos a México! 🇲🇽</h1>
+            <p className="subtitle">Découvrez la magie, les couleurs et les saveurs du Mexique</p>
+          </div>
+        </section>
+        
+        <section className="features">
+          <div className="feature">
+            <h2>Culture riche 🎭</h2>
+            <p>Explorez l'histoire fascinante et les traditions uniques du Mexique.</p>
+          </div>
+          <div className="feature">
+            <h2>Cuisine délicieuse 🌮</h2>
+            <p>Savourez les plats emblématiques et les saveurs épicées de la gastronomie mexicaine.</p>
+          </div>
+          <div className="feature">
+            <h2>Paysages à couper le souffle 🏜️</h2>
+            <p>Des plages paradisiaques aux ruines mayas, découvrez la beauté naturelle du Mexique.</p>
+          </div>
+        </section>
+        
+        <section className="cta">
+          <h2>Prêt pour l'aventure ?</h2>
+          <button className="cta-button">Explorez maintenant !</button>
+        </section>
+      </main>
+      
+      <footer className="footer">
+        <p>&copy; 2025 ¡Viva México! Tous droits réservés.</p>
+      </footer>
+    </div>
+  );
 }
 
-export default App
+export default App;

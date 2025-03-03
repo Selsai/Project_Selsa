@@ -1,42 +1,100 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* App.css */
+.app {
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  
+  .hero {
+    background-image: linear-gradient(to bottom, #FFC107, #FF8C00);
+    padding: 60px 0;
+    text-align: center;
+    color: white;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
+  
+  .hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .features {
+    display: flex;
+    justify-content: space-between;
+    margin: 60px 0;
+  }
+  
+  .feature {
+    flex-basis: 30%;
+    text-align: center;
+    padding: 20px;
+    background-color: #F8F8F8;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .feature h2 {
+    color: #003049;
+    margin-bottom: 15px;
+  }
+  
+  .cta {
+    text-align: center;
+    padding: 60px 0;
+    background-color: #FCBF49;
+  }
+  
+  .cta h2 {
+    font-size: 2rem;
+    color: #003049;
+    margin-bottom: 20px;
+  }
+  
+  .cta-button {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    background-color: #D62828;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .cta-button:hover {
+    background-color: #B51D1D;
+  }
+  
+  .footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #003049;
+    color: white;
+  }
+  
+  @media (max-width: 768px) {
+    .features {
+      flex-direction: column;
+    }
+    
+    .feature {
+      margin-bottom: 20px;
+    }
+  }
+  
