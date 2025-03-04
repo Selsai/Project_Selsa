@@ -1,57 +1,67 @@
-import React from "react";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import Dish from "./components/Dish/Dish";
-import tacosImage from "./assets/img/tacos-1613795_960_720.jpg";
-import enchiladasImage from "./assets/img/mexican-245240_960_720.jpg";
-import moleImage from "./assets/img/mole-5980185_960_720.jpg";
-import { Container } from "react-bootstrap";
-import "./App.scss";
+import { useState } from 'react'
+import Footer from './components/Footer/Footer'
+import Header from './components/Header/Header'
+import Dish from './components/Dish/Dish'
+import { Container, Row, Col, Button } from 'react-bootstrap'
+import './App.scss'
 
 const dishes = [
   {
-    name: "Tacos à l'unité",
-    description: "Savourez l'authenticité mexicaine avec notre délicieux tacos à l'unité...",
+    id: 1,
+    title: "Tacos à l'unité",
     price: 3,
-    image: tacosImage,
-    slug: "tacos-a-l-unite",
-    stock: 12,
+    img: "https://cdn.pixabay.com/photo/2016/08/23/08/53/tacos-1613795_960_720.jpg",
+    isNew: true,
+    stock: 12
   },
   {
-    name: "Enchiladas",
-    description: "Nos enchiladas sont un festin de saveurs, avec des tortillas de maïs...",
+    id: 2,
+    title: "Enchiladas",
     price: 12,
-    image: enchiladasImage,
-    slug: "enchiladas",
-    stock: 0,
+    img: "https://cdn.pixabay.com/photo/2014/01/14/22/13/mexican-245240_960_720.jpg",
+    isNew: false,
+    stock: 0
   },
   {
-    name: "Mole poblano",
-    description: "Découvrez la richesse de la cuisine mexicaine avec notre mole poblano...",
+    id: 3,
+    title: "Mole Poblano",
     price: 15,
-    image: moleImage,
-    slug: "mole-poblano",
-    stock: 5,
-  },
-];
+    img: "https://cdn.pixabay.com/photo/2021/02/04/03/57/mole-5980185_960_720.jpg",
+    isNew: false,
+    stock: 5
+  }
+]
 
 function App() {
+
+  const [showNewOnly, setShowNewOnly] = useState(false);
+
+  const handleShowNewOnly = () => {
+    setShowNewOnly(!showNewOnly)
+  }
+
+  const filteredDishes = showNewOnly ? dishes.filter(dish => dish.isNew) : dishes.filter(dish => dish.stock > 0);
+
   return (
-    <div className="app">
+    <>
       <Header />
-      <main className="main-content">
-        <Container>
-          <h1 className="text-center mb-5">Nos plats mexicains</h1>
-          <div className="dishes-container">
-            {dishes.map((dish) => (
-              <Dish key={dish.slug} {...dish} />
-            ))}
-          </div>
-        </Container>
-      </main>
+      <Container>
+        <Row>
+          <Button onClick={handleShowNewOnly} variant="danger" className="mb-3">
+            {showNewOnly ? "Nouveautés uniquement" : "Voir les plats disponibles"}
+          </Button>
+        </Row>
+        <Row>
+          {filteredDishes.map(dish => (
+            <Col md={4} key={dish.id}>
+              <Dish title={dish.title} price={dish.price} img={dish.img} isNew={dish.isNew} />
+            </Col>
+          ))}
+        </Row>
+      </Container>
       <Footer />
-    </div>
-  );
+    </>
+  )
 }
 
-export default App;
+export default App

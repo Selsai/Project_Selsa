@@ -1,48 +1,25 @@
-.dish-card {
-  width: 300px;
-  height: 400px; // Fixed height
-  border: none;
-  border-radius: 15px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+.card {
+  cursor: pointer;
+  transition: ease 300ms all;
+
+  .badge {
+      position: absolute;
+      right: 0;
+      margin: 15px;
   }
 
-  .card-img-top {
-    height: 150px;
-    object-fit: cover;
+  img {
+      height: 250px;
+      object-fit: cover;
   }
 
-  .card-body {
-    padding: 20px;
-    background-color: #fff;
-    flex-direction: column;
-    flex-grow: 1;
+  &-body {
+      display: grid;
+      gap: 4px;
   }
 
-  .card-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
+}
 
-  .card-text {
-    flex-grow: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-  }
-
-  .price {
-    font-weight: bold;
-    color: #4CAF50;
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-  }
+.card:hover {
+  scale: 1.05;
 }
