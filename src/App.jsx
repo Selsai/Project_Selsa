@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import Footer from './components/Footer/Footer'
-import Header from './components/Header/Header'
-import Dish from './components/Dish/Dish'
-import { Container, Row, Col, Button } from 'react-bootstrap'
-import './App.scss'
+import { useState } from 'react';
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
+import Dish from './components/Dish/Dish';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import './App.scss';
 
 const dishes = [
   {
@@ -30,17 +30,18 @@ const dishes = [
     isNew: false,
     stock: 5
   }
-]
+];
 
 function App() {
-
   const [showNewOnly, setShowNewOnly] = useState(false);
 
   const handleShowNewOnly = () => {
-    setShowNewOnly(!showNewOnly)
-  }
+    setShowNewOnly(!showNewOnly);
+  };
 
-  const filteredDishes = showNewOnly ? dishes.filter(dish => dish.isNew) : dishes.filter(dish => dish.stock > 0);
+  const availableDishes = dishes.filter(
+    dish => dish.stock > 0 && (!showNewOnly || dish.isNew)
+  );
 
   return (
     <>
@@ -52,7 +53,7 @@ function App() {
           </Button>
         </Row>
         <Row>
-          {filteredDishes.map(dish => (
+          {availableDishes.map(dish => (
             <Col md={4} key={dish.id}>
               <Dish title={dish.title} price={dish.price} img={dish.img} isNew={dish.isNew} />
             </Col>
@@ -61,7 +62,7 @@ function App() {
       </Container>
       <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
