@@ -2,9 +2,9 @@ import React from 'react';
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import Dish from "./components/dish/Dish";
-import tacosImage from "./assets/tacos-1613795_960_720.jpg";
-import enchiladasImage from "./assets/mexican-245240_960_720.jpg";
-import moleImage from "./assets/mole-5980185_960_720.jpg";
+import tacosImage from "./assets//img/tacos-1613795_960_720.jpg";
+import enchiladasImage from "./assets/img/mexican-245240_960_720.jpg";
+import moleImage from "./assets/img/mole-5980185_960_720.jpg";
 import "./App.css";
 
 const dishes = [

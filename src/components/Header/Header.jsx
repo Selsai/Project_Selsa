@@ -1,4 +1,4 @@
-import logo from "/src/assets/man-3262834_960_720.webp";
+import logo from "../../assets/img/man-3262834_960_720.webp";
 import "./Header.css";
 
 function Header() {
