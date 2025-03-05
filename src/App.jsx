@@ -1,10 +1,11 @@
-import { useState } from 'react'
-import Footer from './components/Footer/Footer'
-import Header from './components/Header/Header'
-import Dish from './components/Dish/Dish'
-import { Container, Row, Col, Button } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHatCowboy, faPepperHot } from '@fortawesome/free-solid-svg-icons'
+import React, { useState, useRef, useEffect, useContext } from 'react';
+import { CartContext } from './context/cartContext';
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
+import Dish from './components/Dish/Dish';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHatCowboy, faPepperHot } from '@fortawesome/free-solid-svg-icons';
 
 // Plats
 const dishes = [
@@ -32,14 +33,20 @@ const dishes = [
     isNew: false,
     stock: 5
   }
-]
+];
 
 function App() {
   const [showNewOnly, setShowNewOnly] = useState(false);
+  const { cartCount } = useContext(CartContext);
+  const prevCartCountRef = useRef(cartCount);
+
+  useEffect(() => {
+    prevCartCountRef.current = cartCount;
+  }, [cartCount]);
 
   const handleShowNewOnly = () => {
-    setShowNewOnly(!showNewOnly)
-  }
+    setShowNewOnly(!showNewOnly);
+  };
 
   const availableDishes = dishes.filter(dish => dish.stock > 0 && (!showNewOnly || dish.isNew));
 
@@ -56,6 +63,11 @@ function App() {
             <FontAwesomeIcon icon={showNewOnly ? faPepperHot : faHatCowboy} className="me-2" />
             {showNewOnly ? "Afficher tous les plats" : "Voir les nouveautés"}
           </Button>
+          {prevCartCountRef.current !== cartCount && (
+            <p className="text-center mt-3">
+              Le panier est passé de {prevCartCountRef.current} à {cartCount} article{cartCount > 1 ? 's' : ''}.
+            </p>
+          )}
         </Container>
         <Container>
           <Row>
@@ -69,6 +81,7 @@ function App() {
       </main>
       <Footer />
     </>
-  )
+  );
 }
-export default App
+
+export default App;
