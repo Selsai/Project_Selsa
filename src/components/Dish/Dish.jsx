@@ -5,7 +5,7 @@ import { CartContext } from '../../context/cartContext';
 import { useContext } from 'react';
 
 const Dish = ({ title, price, img, isNew }) => {
-    const { addToCart } = useContext(CartContext); // Récupération de addToCart via le contexte
+    const { dispatch } = useContext(CartContext);
 
     return (
         <Card>
@@ -14,7 +14,10 @@ const Dish = ({ title, price, img, isNew }) => {
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
                 <Card.Text>{price}€</Card.Text>
-                <Button onClick={addToCart} variant="danger">Ajouter au panier</Button>
+                <div className="d-flex gap-2">
+                    <Button onClick={() => dispatch({ type: 'increment' })} variant="danger" className="w-100">Ajouter au panier</Button>
+                    <Button onClick={() => dispatch({ type: 'decrement' })} variant="outline-danger" className="w-100">Retirer du panier</Button>
+                </div>
             </Card.Body>
         </Card>
     );
