@@ -1,12 +1,8 @@
 import React from 'react'
 import { Card, Badge, Button } from 'react-bootstrap';
 import "./Dish.scss";
-import { CartContext } from '../../context/cartContext';
-import { useContext } from 'react';
 
-const Dish = ({ title, price, img, isNew }) => {
-    const { addToCart } = useContext(CartContext);
-
+const Dish = ({ title, price, img, isNew, addToCart }) => {
     return (
         <Card>
             {isNew && <Badge bg="danger">Nouveau</Badge>}
