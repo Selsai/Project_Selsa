@@ -2,10 +2,14 @@ import React from 'react';
 import logo from "../../assets/img/man-3262834_960_720.webp";
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import './Header.scss';
+import { CartContext } from '../../context/cartContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUtensils  } from '@fortawesome/free-solid-svg-icons';
+import { faUtensils } from '@fortawesome/free-solid-svg-icons';
+import { useContext } from 'react';
 
-const Header = ({ cartCount }) => {
+const Header = () => {
+    const { cartCount } = useContext(CartContext); // Récupération de cartCount via le contexte
+
     return (
         <header>
             <Navbar className="bg-body-tertiary">

@@ -1,8 +1,12 @@
-import React from 'react'
+import React from 'react';
 import { Card, Badge, Button } from 'react-bootstrap';
 import "./Dish.scss";
+import { CartContext } from '../../context/cartContext';
+import { useContext } from 'react';
 
-const Dish = ({ title, price, img, isNew, addToCart }) => {
+const Dish = ({ title, price, img, isNew }) => {
+    const { addToCart } = useContext(CartContext); // Récupération de addToCart via le contexte
+
     return (
         <Card>
             {isNew && <Badge bg="danger">Nouveau</Badge>}
@@ -16,4 +20,4 @@ const Dish = ({ title, price, img, isNew, addToCart }) => {
     );
 };
 
-export default Dish
+export default Dish;

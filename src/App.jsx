@@ -3,6 +3,7 @@ import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
 import Dish from './components/Dish/Dish'
 import { Container, Row, Col, Button } from 'react-bootstrap'
+import { CartProvider } from './context/cartContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHatCowboy, faPepperHot } from '@fortawesome/free-solid-svg-icons'
 
@@ -36,24 +37,19 @@ const dishes = [
 
 function App() {
   const [showNewOnly, setShowNewOnly] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
 
   const handleShowNewOnly = () => {
     setShowNewOnly(!showNewOnly)
   }
 
-  const addToCart = () => {
-    setCartCount(prevCount => prevCount + 1);
-  }
-
   const availableDishes = dishes.filter(dish => dish.stock > 0 && (!showNewOnly || dish.isNew));
 
   return (
-    <>
-      <Header cartCount={cartCount} />
+    <CartProvider>
+      <Header />
       <main>
         <Container className="my-4">
-          <Button 
+        <Button 
             onClick={handleShowNewOnly} 
             variant={showNewOnly ? 'outline-danger' : 'danger'}
             className="d-flex align-items-center mx-auto px-4 py-2"
@@ -66,14 +62,14 @@ function App() {
           <Row>
             {availableDishes.map(dish => (
               <Col md={4} key={dish.id}>
-                <Dish title={dish.title} price={dish.price} img={dish.img} isNew={dish.isNew} addToCart={addToCart} />
+                <Dish title={dish.title} price={dish.price} img={dish.img} isNew={dish.isNew} />
               </Col>
             ))}
           </Row>
         </Container>
       </main>
       <Footer />
-    </>
+    </CartProvider>
   )
 }
 
