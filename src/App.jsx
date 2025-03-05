@@ -1,10 +1,13 @@
-import { useState } from 'react';
-import Footer from './components/Footer/Footer';
-import Header from './components/Header/Header';
-import Dish from './components/Dish/Dish';
-import { Container, Row, Col, Button } from 'react-bootstrap';
-import './App.scss';
+import { useState } from 'react'
+import Footer from './components/Footer/Footer'
+import Header from './components/Header/Header'
+import Dish from './components/Dish/Dish'
+import { Container, Row, Col, Button } from 'react-bootstrap'
+import { CartProvider } from './context/cartContext'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHatCowboy, faPepperHot } from '@fortawesome/free-solid-svg-icons'
 
+// Plats
 const dishes = [
   {
     id: 1,
@@ -30,39 +33,44 @@ const dishes = [
     isNew: false,
     stock: 5
   }
-];
+]
 
 function App() {
   const [showNewOnly, setShowNewOnly] = useState(false);
 
   const handleShowNewOnly = () => {
-    setShowNewOnly(!showNewOnly);
-  };
+    setShowNewOnly(!showNewOnly)
+  }
 
-  const availableDishes = dishes.filter(
-    dish => dish.stock > 0 && (!showNewOnly || dish.isNew)
-  );
+  const availableDishes = dishes.filter(dish => dish.stock > 0 && (!showNewOnly || dish.isNew));
 
   return (
-    <>
+    <CartProvider>
       <Header />
-      <Container>
-        <Row>
-          <Button onClick={handleShowNewOnly} variant="danger" className="mb-3">
-            {showNewOnly ? "Nouveautés uniquement" : "Voir les plats disponibles"}
+      <main>
+        <Container className="my-4">
+        <Button 
+            onClick={handleShowNewOnly} 
+            variant={showNewOnly ? 'outline-danger' : 'danger'}
+            className="d-flex align-items-center mx-auto px-4 py-2"
+          >
+            <FontAwesomeIcon icon={showNewOnly ? faPepperHot : faHatCowboy} className="me-2" />
+            {showNewOnly ? "Afficher tous les plats" : "Voir les nouveautés"}
           </Button>
-        </Row>
-        <Row>
-          {availableDishes.map(dish => (
-            <Col md={4} key={dish.id}>
-              <Dish title={dish.title} price={dish.price} img={dish.img} isNew={dish.isNew} />
-            </Col>
-          ))}
-        </Row>
-      </Container>
+        </Container>
+        <Container>
+          <Row>
+            {availableDishes.map(dish => (
+              <Col md={4} key={dish.id}>
+                <Dish title={dish.title} price={dish.price} img={dish.img} isNew={dish.isNew} />
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </main>
       <Footer />
-    </>
-  );
+    </CartProvider>
+  )
 }
 
-export default App;
+export default App

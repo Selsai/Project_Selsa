@@ -1,19 +1,21 @@
 import React from 'react'
 import { Card, Badge, Button } from 'react-bootstrap';
 import "./Dish.scss";
+import { CartContext } from '../../context/cartContext';
+import { useContext } from 'react';
 
 const Dish = ({ title, price, img, isNew }) => {
+    const { addToCart } = useContext(CartContext);
+
     return (
         <Card>
             {isNew && <Badge bg="danger">Nouveau</Badge>}
-            
             <Card.Img src={img} alt={title} />
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
                 <Card.Text>{price}€</Card.Text>
-                <Button onClick={()=>alert(`Le plat ${title} est maintenant dans votre panier.`)} variant="danger">Ajouter</Button>
+                <Button onClick={addToCart} variant="danger">Ajouter au panier</Button>
             </Card.Body>
-
         </Card>
     );
 };
