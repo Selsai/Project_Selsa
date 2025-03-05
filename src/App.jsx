@@ -3,7 +3,6 @@ import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
 import Dish from './components/Dish/Dish'
 import { Container, Row, Col, Button } from 'react-bootstrap'
-import { CartProvider } from './context/cartContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHatCowboy, faPepperHot } from '@fortawesome/free-solid-svg-icons'
 
@@ -45,11 +44,11 @@ function App() {
   const availableDishes = dishes.filter(dish => dish.stock > 0 && (!showNewOnly || dish.isNew));
 
   return (
-    <CartProvider>
+    <>
       <Header />
       <main>
         <Container className="my-4">
-        <Button 
+          <Button 
             onClick={handleShowNewOnly} 
             variant={showNewOnly ? 'outline-danger' : 'danger'}
             className="d-flex align-items-center mx-auto px-4 py-2"
@@ -69,8 +68,7 @@ function App() {
         </Container>
       </main>
       <Footer />
-    </CartProvider>
+    </>
   )
 }
-
 export default App
