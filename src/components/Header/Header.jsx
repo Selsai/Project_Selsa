@@ -2,13 +2,12 @@ import React from 'react';
 import logo from "../../assets/img/man-3262834_960_720.webp";
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import './Header.scss';
-import { CartContext } from '../../context/cartContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils } from '@fortawesome/free-solid-svg-icons';
-import { useContext } from 'react';
+import { useCart } from '../../hooks/useCart';
 
 const Header = () => {
-    const { cartCount } = useContext(CartContext); // Récupération de cartCount via le contexte
+    const { cartCount } = useCart();
 
     return (
         <header>
@@ -25,7 +24,7 @@ const Header = () => {
                     </Navbar.Collapse>
                     <Navbar.Text>
                         <FontAwesomeIcon icon={faUtensils} style={{ marginRight: '5px', color: '#dc3545' }} />
-                        Panier : <strong>{cartCount}</strong> article{cartCount > 1 ? "s" : ""}
+                        Panier : <strong>{cartCount}</strong> article{cartCount > 1 ? 's' : ''}
                     </Navbar.Text>
                 </Container>
             </Navbar>
@@ -34,3 +33,4 @@ const Header = () => {
 };
 
 export default Header;
+    

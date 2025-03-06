@@ -1,11 +1,10 @@
 import React from 'react';
 import { Card, Badge, Button } from 'react-bootstrap';
 import "./Dish.scss";
-import { CartContext } from '../../context/cartContext';
-import { useContext } from 'react';
+import { useCart } from '../../hooks/useCart';
 
 const Dish = ({ title, price, img, isNew }) => {
-    const { dispatch } = useContext(CartContext);
+    const { addToCart, removeFromCart } = useCart();
 
     return (
         <Card>
@@ -15,8 +14,8 @@ const Dish = ({ title, price, img, isNew }) => {
                 <Card.Title>{title}</Card.Title>
                 <Card.Text>{price}€</Card.Text>
                 <div className="d-flex gap-2">
-                    <Button onClick={() => dispatch({ type: 'increment' })} variant="danger" className="w-100">Ajouter au panier</Button>
-                    <Button onClick={() => dispatch({ type: 'decrement' })} variant="outline-danger" className="w-100">Retirer du panier</Button>
+                    <Button onClick={addToCart} variant="danger" className="w-100">Ajouter au panier</Button>
+                    <Button onClick={removeFromCart} variant="outline-danger" className="w-100">Retirer du panier</Button>
                 </div>
             </Card.Body>
         </Card>

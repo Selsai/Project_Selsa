@@ -63,11 +63,9 @@ function App() {
             <FontAwesomeIcon icon={showNewOnly ? faPepperHot : faHatCowboy} className="me-2" />
             {showNewOnly ? "Afficher tous les plats" : "Voir les nouveautés"}
           </Button>
-          {prevCartCountRef.current !== cartCount && (
-            <p className="text-center mt-3">
-              Le panier est passé de {prevCartCountRef.current} à {cartCount} article{cartCount > 1 ? 's' : ''}.
-            </p>
-          )}
+          <p className="text-center mt-3">
+            Le panier est passé de {prevCartCountRef.current} à {cartCount} article{cartCount > 1 ? 's' : ''}.
+          </p>
         </Container>
         <Container>
           <Row>
